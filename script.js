@@ -1,21 +1,21 @@
- // Crie uma instância da fila
- let minhaFila = new Fila(10);
+// Crie uma instância da fila
+let minhaFila = new Fila(5);
 
- // Função para adicionar um elemento à fila
- function adicionarElemento() {
-    const novoNome = document.getElementById("txtNovoNome");
-    const novoCpf = document.getElementById("txtNovoCpf");
+// Função para adicionar um elemento à fila
+function adicionarElemento() {
+   const novoNome = document.getElementById("txtNovoNome");
+   const novoCpf = document.getElementById("txtNovoCpf");
   
-    // Verificar se tem algo digitado e mostrar mensagem se necessário
-    if(novoNome.value == "" || novoCpf.value == ""){
-       alert("Preencha todos os Campos !")
-    }
-    else{
+   // Verificar se tem algo digitado e mostrar mensagem se necessário
+   if(novoNome.value == "" || novoCpf.value == ""){
+      alert("Preencha todos os Campos !")
+   }else{
       const novoAtendimento = new Atendimento();
       novoAtendimento.nome = novoNome.value;
       novoAtendimento.cpf = novoCpf.value;
       novoAtendimento.data = obterDataAtual();
       novoAtendimento.hora = obterHoraAtual();
+
       if(minhaFila.enqueue(novoAtendimento) === false)
          alert("Fila Cheia !");
       else{
@@ -25,60 +25,68 @@
          novoNome.focus();
          mostrarFila();
          console.log(minhaFila.toString());
+         pessoasFila.innerHTML="";
       }
-    }
-    //set atributos do atendimento no objeto a partir dos inputs e funções
-    // adicionar na fila e mostrar na tela
- }
+   }
+//set atributos do atendimento no objeto a partir dos inputs e funções
+// adicionar na fila e mostrar na tela
+}
 //--------------------------------------------------------------------------------------------
- // Função para remover o primeiro elemento da fila
- function realizarAtendimento() {
-    // verificar se não está vazia antes de atender
-    if(minhaFila.isEmpty())
-       alert("Fila Vazia !");
-    else{
-       let rem = minhaFila.dequeue();
-       rem.calcularDiferencaHoras(rem.hora,rem.obterHoraAtual);
-       console.log(rem.toString());
-       mostrarMensagemRemocao(rem);
-    }
-    mostrarFila();
-    // mostrar dados da pessoa atendida utilizando a funcao mostrarMensagemRemocao
- }
- //--------------------------------------------------------------------------------
+// Função para remover o primeiro elemento da fila
+function realizarAtendimento() {
+   // verificar se não está vazia antes de atender
+   if(minhaFila.isEmpty())  {
+      lblMensagemRemocao.innerHTML ="A Fila está Vazia !";
+      lblMensagemRemocao.style.display = "block";
+      alert("Fila Vazia !");
+      pessoasFila.innerHTML="Fila Vazia !";
+   }
+   else{
+      let rem = minhaFila.dequeue();
+      const tempoEspera = calcularDiferencaHoras(rem.hora,obterHoraAtual());
+      alert(rem.nome+" Aguardou Por "+tempoEspera+" Para Ser Atendido !");   
+      mostrarMensagemRemocao(rem); 
+   }
+   mostrarFila();
+   // mostrar dados da pessoa atendida utilizando a funcao mostrarMensagemRemocao
+}
+//--------------------------------------------------------------------------------
 function buscarCpf() {
    const cpf = document.getElementById("txtNovoCpf").value.trim(); // o trim retira os espaços em branco
    const atendimento = new Atendimento(null,cpf); // vamos pesquisar só por CPF
-    // para cada elemento da fila, verificar com o equals
-    // Deve retornar a posição na fila e caso não seja encontrado avisar, crie um contador de posicões
-   for (let item of minhaFila.items) { // para cada elemento da fila
-      if (item.equals(atendimento)) 
-         alert("Achou! Posição: " );
+   // para cada elemento da fila, verificar com o equals
+   // Deve retornar a posição na fila e caso não seja encontrado avisar, crie um contador de posicões
+   for (let item of minhaFila.items){  // para cada elemento da fila
+      if (item.equals(atendimento))
+         alert("Achou! Posição: ");
    }
+
+   
+   alert("CPF não encontrado !");
    // se nao encontrar mostre mensagem
 }
 //--------------------------------------------------------------------------------------------
 function mostrarMensagemRemocao(pessoaAtendida) {
-      const lblMensagemRemocao = document.getElementById("lblMensagemRemocao");
-      lblMensagemRemocao.innerHTML ="Próximo a ser atendido(a): "+ pessoaAtendida.nome;
-      lblMensagemRemocao.style.display = "block";
+   const lblMensagemRemocao = document.getElementById("lblMensagemRemocao");
+   lblMensagemRemocao.innerHTML ="Próximo a ser atendido(a): "+ pessoaAtendida.nome;
+   lblMensagemRemocao.style.display = "block";
 }
 //--------------------------------------------------------------------------------------------
- // Função para mostrar a  fila
+// Função para mostrar a  fila
 function mostrarFila() {
-      const filaElemento = document.getElementById("listPessoasFila");
-    filaElemento.textContent = minhaFila.toString();
+   const filaElemento = document.getElementById("listPessoasFila");
+   filaElemento.textContent = minhaFila.toString();
 }
 //--------------------------------------------------------------------------------------------
  // funcao data
  function obterDataAtual() {
-    let dataAtual = new Date();
-    let dia = dataAtual.getDate();
-    let mes = dataAtual.getMonth() + 1; // Adiciona 1 porque o mês inicia do zero
-    let ano = dataAtual.getFullYear();
-    // Formata a data como "dd/mm/aaaa"
-    let dataFormatada = `${dia.toString().padStart(2, '0')}/${mes.toString().padStart(2, '0')}/${ano}`;
-    return dataFormatada;
+   let dataAtual = new Date();
+   let dia = dataAtual.getDate();
+   let mes = dataAtual.getMonth() + 1; // Adiciona 1 porque o mês inicia do zero
+   let ano = dataAtual.getFullYear();
+   // Formata a data como "dd/mm/aaaa"
+   let dataFormatada = `${dia.toString().padStart(2, '0')}/${mes.toString().padStart(2, '0')}/${ano}`;
+   return dataFormatada;
 }
 //--------------------------------------------------------------------------------------------
 function obterHoraAtual() {
