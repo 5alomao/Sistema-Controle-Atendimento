@@ -47,7 +47,7 @@
     }
 
     toString() {
-        return `Nome: ${this._nome} - Data: ${this._data} - Hora: ${this._hora}`;
+        return `Nome: ${this._nome} - CPF: ${this._cpf} - Data: ${this._data} - Hora: ${this._hora}`;
       }
 }
   
