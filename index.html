@@ -16,30 +16,39 @@
       <div class="jumbotron text-light text-center">
         <h1 class="display-4"><i class="fas fa-headset"></i> Sistema de Controle de Atendimento</h1>
       </div>
-      <div id="lblMensagemRemocao" class="alert mt-3" style="display: none;"></div>
-        <div class="form-group">
-          <label for="novoNome">Nome:</label>
-          <br />
-          <input type="text" class="form-control" id="txtNovoNome">
-          
-          <br />
-          <label for="novoCpf">CPF:</label>
-          <br />
-          <input type="text" class="form-control" id="txtNovoCpf">
-        
-        <br />
-        <button class="btn btn-primary" onclick="adicionarElemento()">Adicionar à fila</button>
-        <button class="btn btn-success" onclick="realizarAtendimento()">Atender</button>
-        <button class="btn btn-secondary" onclick="buscarCpf()">Buscar</button>
-        <br />
-        <br />
+      <div class="row justify-content-center">
+        <p id="lblMensagemRemocao" class="alert mt-3">A Fila está Vazia!</p>
       </div>
-      <h2 id="pessoasFila">Fila vazia !</h2>
-      <ul id="listPessoasFila"></ul>    
-      <footer class="footer jumbotron text-light text-center">
-      
+      <div class="form-group">
+        <div class="row justify-content-center">
+          <div class="col-md-4 mb-3">
+            <label for="novoNome" class="form-label">Nome:</label>
+            <input type="text" class="form-control" id="txtNovoNome">
+          </div>
+          <br />
+          <div class="row justify-content-center">
+            <div class="col-md-4 mb-3">
+              <label for="novoCpf" class="form-label">CPF:</label>
+              <input type="text" class="form-control" id="txtNovoCpf">
+            </div>
+          </div>      
+        </div>
+        <br/>
+        <div class="row justify-content-center">
+          <div class="col-md-4 mb-3">
+            <button class="btn-adiciona" onclick="adicionarElemento()">Adicionar à Fila</button>
+            <button class="btn-atende" onclick="realizarAtendimento()">Atender</button>
+            <button class="btn-busca" onclick="buscarCpf()">Buscar</button>
+          </div>
+
+        </div>
+        <br /><br />
+        <div class="col-md-12 mb-3">
+          <h2 class="h2" id="pessoasFila">Ninguém na Fila</h2>
+          <ul id="listPessoasFila"></ul>    
+        </div>
+      <footer class="rodape jumbotron text-light text-center">
         <span>Desenvolvido por Salomão Ferreira Junior</span>
-      
     </footer>
   </div>
 </body>

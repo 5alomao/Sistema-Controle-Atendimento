@@ -1,5 +1,5 @@
 let minhaFila = new Fila(5);
-
+mostrarMensagemRemocao(minhaFila.front());
 function adicionarElemento() {
    const novoNome = document.getElementById("txtNovoNome");
    const novoCpf = document.getElementById("txtNovoCpf");
@@ -30,7 +30,7 @@ function realizarAtendimento() {
    else{
       const remove = minhaFila.dequeue();
       const tempoEspera = calcularDiferencaHoras(remove.hora, obterHoraAtual());
-      alert(remove.nome+" aguardou tempo total de: "+tempoEspera+" para ser atendido !");   
+      alert(remove.nome+" aguardou tempo total de: "+tempoEspera+" para ser atendido(a)!");   
       console.log(minhaFila.toString());
       mostrarFila();
    }
@@ -45,7 +45,7 @@ function buscarCpf() {
       i++;
       console.log(i);
       if (item.equals(atendimento)){
-         alert("Achou! Posição: "+i);
+         alert("Achou! CPF encontrado na Posição: "+i);
          return;
       }
    }
@@ -73,15 +73,15 @@ function mostrarFila() {
    }
 
    if(i == 0) {
-      pessoasFila.innerHTML = "Fila Vazia!";
+      pessoasFila.innerHTML = "Ninguém na Fila!";
       pessoasFila.style.display = "block";
    }else
-      pessoasFila.innerHTML = "";
+      pessoasFila.innerHTML = "Pessoas na Fila:";
 
    if(!minhaFila.isEmpty()){
       mostrarMensagemRemocao(minhaFila.itens[0]);
    }else{
-      lblMensagemRemocao.innerHTML = "A Fila está Vazia !";
+      lblMensagemRemocao.innerHTML = "A Fila está Vazia!";
       lblMensagemRemocao.style.display = "block";
    }
 }

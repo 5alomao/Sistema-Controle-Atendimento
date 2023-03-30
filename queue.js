@@ -1,29 +1,28 @@
-  class Fila{
-    constructor(maxSize){
-       this.maximo = maxSize;
-       this.itens = [];
-    }
-//---------------------------------------------
-    enqueue(elemento){
-       if(this.itens.length === this.maximo)
-           return false;   
-       this.itens.push(elemento);// insere no final
-       return true;    
-    }
+class Fila{
+  constructor(maxSize){  
+    this.maximo = maxSize;
+    this.itens = [];
+  }
 
-    dequeue(){
-       let valor = this.itens.shift();
-       return valor;
-    }
+  enqueue(elemento){
+    if(this.itens.length === this.maximo)
+      return false;   
+    this.itens.push(elemento);
+      return true;    
+  }
 
-    isEmpty(){
+  dequeue(){
+    let valor = this.itens.shift();
+      return valor;
+  }
 
-      return this.itens.length === 0;
-    }
+  isEmpty(){
+    return this.itens.length === 0;
+  }
 
-    toString(){
-      return this.itens.toString();
-    }
-   
-}// fim classe 
+  toString(){
+    return this.itens.toString();
+  }
+  
+}
   
