@@ -80,7 +80,6 @@ li:hover {
   height: 35px;
   width: 125px;
   border-radius: 0.3rem;
-  margin-left: 21px;
 }
 
 .btn-atende{
@@ -103,4 +102,13 @@ li:hover {
   height: 35px;
   width: 90px;
   border-radius: 0.3rem;
+}
+
+div .btn{
+  width: 100%;
+  display: flex;
+}
+
+div {
+  justify-content: center;
 }

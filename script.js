@@ -40,7 +40,7 @@ function buscarCpf() {
    const cpf = document.getElementById("txtNovoCpf").value.trim();
    const atendimento = new Atendimento();
    let i = 0;
-   for (let [key, item] of Object.entries(minhaFila.itens)){
+   for (let item of minhaFila.itens){
       atendimento.cpf = cpf;
       i++;
       console.log(i);
